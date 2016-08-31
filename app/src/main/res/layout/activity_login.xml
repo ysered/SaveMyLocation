@@ -37,8 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_edit_text"
-            android:inputType="textEmailAddress"
-            android:text="yuriy.seredyuk@gmail.com" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/password_edit_text"
