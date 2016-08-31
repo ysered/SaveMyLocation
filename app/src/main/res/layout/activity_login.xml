@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_weight="3"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/error_text_view"
+            style="@style/AppTheme.LoginWidget.ErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/error_invalid_login"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/AppTheme.LoginWidget.HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_via_facebook" />
+
+        <EditText
+            android:id="@+id/email_edit_text"
+            style="@style/AppTheme.LoginWidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_edit_text"
+            android:inputType="textEmailAddress"
+            android:text="yuriy.seredyuk@gmail.com" />
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            style="@style/AppTheme.LoginWidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_edit_text"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/login_button"
+            style="@style/AppTheme.LoginWidget.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="@string/login_button" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+</FrameLayout>

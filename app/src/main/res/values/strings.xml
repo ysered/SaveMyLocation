@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Save My Location</string>
+    <string name="login_via_facebook">Login via Facebook</string>
+    <string name="email_edit_text">Email</string>
+    <string name="password_edit_text">Password</string>
+    <string name="login_button">Login</string>
+    <string name="menu_item_logout">Logout</string>
+    <string name="error_invalid_login">Invalid login</string>
+</resources>
