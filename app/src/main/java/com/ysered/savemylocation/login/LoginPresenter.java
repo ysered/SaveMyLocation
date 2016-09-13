@@ -3,7 +3,7 @@ package com.ysered.savemylocation.login;
 import android.content.Context;
 
 import com.ysered.savemylocation.database.DataSource;
-import com.ysered.savemylocation.facebook.LoginValidator;
+import com.ysered.savemylocation.auth.LoginValidator;
 import com.ysered.savemylocation.task.SimpleBackgroundTaskWithResult;
 import com.ysered.savemylocation.utils.PreferenceUtils;
 

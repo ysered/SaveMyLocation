@@ -1,4 +1,4 @@
-package com.ysered.savemylocation.facebook;
+package com.ysered.savemylocation.auth;
 
 public interface LoginValidator {
 

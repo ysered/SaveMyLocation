@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.ysered.savemylocation.database.DataSource;
 import com.ysered.savemylocation.database.SqliteDataSource;
-import com.ysered.savemylocation.facebook.LoginValidator;
-import com.ysered.savemylocation.facebook.SimpleFacebookLoginValidator;
+import com.ysered.savemylocation.auth.LoginValidator;
+import com.ysered.savemylocation.auth.facebook.SimpleFacebookLoginValidator;
 
 public final class Injector {
 

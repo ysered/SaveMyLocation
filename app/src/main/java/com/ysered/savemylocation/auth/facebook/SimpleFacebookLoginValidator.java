@@ -1,4 +1,6 @@
-package com.ysered.savemylocation.facebook;
+package com.ysered.savemylocation.auth.facebook;
+
+import com.ysered.savemylocation.auth.LoginValidator;
 
 import java.io.IOException;
 import java.io.OutputStream;
