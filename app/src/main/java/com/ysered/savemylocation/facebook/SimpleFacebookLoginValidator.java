@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class SimpleFacebookLoginValidator implements FacebookLoginValidator {
+public class SimpleFacebookLoginValidator implements LoginValidator {
 
     private static final int EXPECTED_STATUS_CODE = 302;
 
@@ -40,7 +40,7 @@ public class SimpleFacebookLoginValidator implements FacebookLoginValidator {
      * This method assumes that 302 response code signals about valid credentials.
      */
     @Override
-    public boolean validate(String email, String password) {
+    public boolean validate(String login, String password) {
         final String cookies = getCookies();
 
         boolean result = false;
@@ -71,7 +71,7 @@ public class SimpleFacebookLoginValidator implements FacebookLoginValidator {
 
             // body
             final String requestBody = "lsd=AVpGDi9X" +
-                    "&email=" + email +
+                    "&email=" + login +
                     "&pass=" + password +
                     "&persistent=1" +
                     "&default_persistent=1" +
