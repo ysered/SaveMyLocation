@@ -9,11 +9,11 @@ import com.ysered.savemylocation.facebook.SimpleFacebookLoginValidator;
 
 public final class Injector {
 
-    public DataSource provideDataSource(Context context) {
+    public static DataSource provideDataSource(Context context) {
         return new SqliteDataSource(context);
     }
 
-    public LoginValidator provideFacebookLoginValidator() {
+    public static LoginValidator provideLoginValidator() {
         return new SimpleFacebookLoginValidator();
     }
 
