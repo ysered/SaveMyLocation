@@ -1,4 +1,4 @@
-package com.ysered.savemylocation;
+package com.ysered.savemylocation.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.ysered.savemylocation.login.LoginContract;
-import com.ysered.savemylocation.login.LoginPresenter;
+import com.ysered.savemylocation.Injector;
+import com.ysered.savemylocation.MapsActivity;
+import com.ysered.savemylocation.R;
 
 public class LoginActivity extends AppCompatActivity implements
         LoginContract.View,

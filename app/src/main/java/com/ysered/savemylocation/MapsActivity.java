@@ -4,42 +4,24 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.ysered.savemylocation.database.DataSource;
-import com.ysered.savemylocation.database.SqliteDataSource;
-import com.ysered.savemylocation.login.LoginContract;
-import com.ysered.savemylocation.login.LoginPresenter;
+import com.ysered.savemylocation.login.LoginActivity;
 import com.ysered.savemylocation.map.MapContract;
 import com.ysered.savemylocation.map.MapPresenter;
-import com.ysered.savemylocation.task.SimpleBackgroundTask;
-import com.ysered.savemylocation.task.SimpleBackgroundTaskWithResult;
-import com.ysered.savemylocation.utils.PreferenceUtils;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements
         MapContract.View,
