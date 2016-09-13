@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ysered.savemylocation.Injector;
-import com.ysered.savemylocation.MapsActivity;
+import com.ysered.savemylocation.map.MapActivity;
 import com.ysered.savemylocation.R;
 
 public class LoginActivity extends AppCompatActivity implements
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements
         );
 
         if (mPresenter.isUserLoggedIn()) {
-            startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+            startActivity(new Intent(getApplicationContext(), MapActivity.class));
         }
 
         setContentView(R.layout.activity_login);
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements
     @Override
     public void navigateToMapView() {
         mErrorTextView.setVisibility(View.GONE);
-        startActivity(new Intent(LoginActivity.this, MapsActivity.class));
+        startActivity(new Intent(LoginActivity.this, MapActivity.class));
     }
 
     @Override

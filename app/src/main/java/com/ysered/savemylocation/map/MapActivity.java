@@ -1,4 +1,4 @@
-package com.ysered.savemylocation;
+package com.ysered.savemylocation.map;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,11 +19,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.ysered.savemylocation.Injector;
+import com.ysered.savemylocation.R;
 import com.ysered.savemylocation.login.LoginActivity;
 import com.ysered.savemylocation.map.MapContract;
 import com.ysered.savemylocation.map.MapPresenter;
 
-public class MapsActivity extends AppCompatActivity implements
+public class MapActivity extends AppCompatActivity implements
         MapContract.View,
         View.OnClickListener,
         GoogleMap.OnMapClickListener,
