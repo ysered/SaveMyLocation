@@ -7,10 +7,10 @@ import java.lang.ref.WeakReference;
 
 public abstract class SimpleBackgroundTaskWithResult<T> extends AsyncTask<Void, Void, T> {
 
-    private final WeakReference<Activity> mActivity;
+    private final WeakReference<Object> mHolder;
 
-    public SimpleBackgroundTaskWithResult(Activity activity) {
-        mActivity = new WeakReference<>(activity);
+    public SimpleBackgroundTaskWithResult(Object holder) {
+        mHolder = new WeakReference<>(holder);
     }
 
     @Override
@@ -19,7 +19,7 @@ public abstract class SimpleBackgroundTaskWithResult<T> extends AsyncTask<Void, 
     }
 
     private boolean canContinue() {
-        return mActivity.get() != null && !mActivity.get().isFinishing();
+        return mHolder.get() != null;
     }
 
     @Override
