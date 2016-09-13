@@ -1,5 +1,6 @@
 package com.ysered.savemylocation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,26 +9,33 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.ysered.savemylocation.database.DataSource;
-import com.ysered.savemylocation.database.SqliteDataSource;
-import com.ysered.savemylocation.facebook.SimpleFacebookLoginValidator;
-import com.ysered.savemylocation.task.SimpleBackgroundTaskWithResult;
-import com.ysered.savemylocation.utils.PreferenceUtils;
+import com.ysered.savemylocation.login.LoginContract;
+import com.ysered.savemylocation.login.LoginPresenter;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements
+        LoginContract.View,
+        View.OnClickListener {
+
+    private LoginContract.Presenter mPresenter;
 
     private TextView mErrorTextView;
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
     private ProgressBar mProgressBar;
 
-    private DataSource mDataSource;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (PreferenceUtils.getCurrentUser(this) != null) {
+        final Context context = getApplicationContext();
+        mPresenter = new LoginPresenter(
+                context,
+                this,
+                Injector.provideLoginValidator(),
+                Injector.provideDataSource(context)
+        );
+
+        if (mPresenter.isUserLoggedIn()) {
             startActivity(new Intent(getApplicationContext(), MapsActivity.class));
         }
 
@@ -37,44 +45,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mPasswordEditText = (EditText) findViewById(R.id.password_edit_text);
         mProgressBar = (ProgressBar) findViewById(R.id.login_progress);
         findViewById(R.id.login_button).setOnClickListener(this);
-        mDataSource = new SqliteDataSource(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.login_button) {
             mProgressBar.setVisibility(View.VISIBLE);
-            new SimpleBackgroundTaskWithResult<Boolean>(this) {
-                @Override
-                protected Boolean onRun() {
-                    final String email = mEmailEditText.getText().toString();
-                    final String password = mPasswordEditText.getText().toString();
-                    final boolean isValid = new SimpleFacebookLoginValidator()
-                            .validate(email, password);
-                    if (isValid) {
-                        saveUser(mEmailEditText.getText().toString());
-                    }
-                    return isValid;
-                }
-
-                @Override
-                protected void onSuccess(Boolean isValid) {
-                    mProgressBar.setVisibility(View.INVISIBLE);
-                    if (isValid) {
-                        mErrorTextView.setVisibility(View.GONE);
-                        startActivity(new Intent(LoginActivity.this, MapsActivity.class));
-                    } else {
-                        mErrorTextView.setVisibility(View.VISIBLE);
-                    }
-                }
-            }.execute();
+            mPresenter.validate(mEmailEditText.getText().toString(),
+                    mPasswordEditText.getText().toString());
         }
     }
 
-    private void saveUser(String userEmail) {
-        PreferenceUtils.saveCurrentUser(this, userEmail.trim());
-        mDataSource.saveUser(userEmail.trim());
+    @Override
+    public void navigateToMapView() {
+        mErrorTextView.setVisibility(View.GONE);
+        startActivity(new Intent(LoginActivity.this, MapsActivity.class));
     }
 
-
+    @Override
+    public void showLoginFailureError() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
 }
