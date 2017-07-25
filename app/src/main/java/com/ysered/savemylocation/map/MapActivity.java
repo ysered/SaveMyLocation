@@ -113,6 +113,7 @@ public class MapActivity extends AppCompatActivity implements
 
     @Override
     public void onMarkerDragStart(Marker marker) {
+
     }
 
     @Override
